@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                   imagem: controller.lista[index].imagem,
                   nome: controller.lista[index].nome,
                   preco: controller.lista[index].preco,
+                  id: controller.lista[index].id,
                   tempoPreparacao: controller.lista[index].tempoPreparacao,
                   ingredientes: controller.lista[index].ingredientes,
                   informacoesNutricionais:

@@ -1,3 +1,5 @@
+import 'package:front_arquitetura_software/order/order_now_repository.dart';
+import 'package:front_arquitetura_software/shared/models/order_model.dart';
 import 'package:mobx/mobx.dart';
 
 part 'order_now_controller.g.dart';
@@ -5,13 +7,17 @@ part 'order_now_controller.g.dart';
 class OrderNowController = OrderNowControllerBase with _$OrderNowController;
 
 abstract class OrderNowControllerBase with Store {
-  OrderNowControllerBase({required this.preco});
+  OrderNowControllerBase(
+      {required this.preco, required this.nome, required this.id});
+
+  final String nome;
+  final int id;
 
   @observable
   int quantidade = 1;
 
   @observable
-  int valor = 1;
+  int tamanho = 1;
 
   @observable
   double preco = 0;
@@ -27,7 +33,7 @@ abstract class OrderNowControllerBase with Store {
   void trocaTemperatura(int value) => controleTemperatura = value;
 
   @action
-  void trocaValor(int value) => valor = value;
+  void trocaValor(int value) => tamanho = value;
 
   @action
   void trocaPreco(double valor) => preco = valor;
@@ -37,4 +43,18 @@ abstract class OrderNowControllerBase with Store {
 
   @action
   void maisQuantidade() => quantidade++;
+
+  final OrderNowRepository repository = OrderNowRepository();
+
+  Future<void> finalizarCadastro() async {
+    var orderModel = OrderModel(
+        nome: nome,
+        id: id,
+        preco: precoTotal,
+        tamanho: tamanho,
+        quantidade: quantidade,
+        controleTemperatura: controleTemperatura);
+
+    await repository.finalizarCompra(orderModel);
+  }
 }

@@ -12,6 +12,7 @@ class DetailsPage extends StatelessWidget {
   final String nome;
   final String descricao;
   final double preco;
+  final int id;
   final String imagem;
   final int tempoPreparacao;
   final List<Ingredients> ingredientes;
@@ -25,7 +26,8 @@ class DetailsPage extends StatelessWidget {
       required this.imagem,
       required this.tempoPreparacao,
       required this.ingredientes,
-      required this.informacoesNutricionais})
+      required this.informacoesNutricionais,
+      required this.id})
       : super(key: key);
 
   @override
@@ -89,6 +91,8 @@ class DetailsPage extends StatelessWidget {
               informacoesNutricionais: informacoesNutricionais,
             ),
             OrderNowButtonWidget(
+              id: id,
+              nome: nome,
               preco: preco,
             ),
           ],

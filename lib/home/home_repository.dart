@@ -9,6 +9,7 @@ class HomeRepository {
         nome: "Caffé Misto",
         descricao: "Café com leite devidamente preparado por profissionais",
         preco: 4.99,
+        id: 1,
         imagem: "assets/twocup.png",
         tempoPreparacao: 5,
         ingredientes: [
@@ -45,6 +46,7 @@ class HomeRepository {
         nome: "Cappuccino",
         descricao: "Café com leite devidamente preparado por profissionais",
         preco: 12.99,
+        id: 2,
         imagem: "assets/twocup.png",
         tempoPreparacao: 15,
         ingredientes: [
@@ -65,6 +67,7 @@ class HomeRepository {
         nome: "Cappuccino com leite",
         descricao: "Café com leite devidamente preparado por profissionais",
         preco: 12.99,
+        id: 3,
         imagem: "assets/twocup.png",
         tempoPreparacao: 45,
         ingredientes: [

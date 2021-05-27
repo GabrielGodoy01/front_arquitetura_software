@@ -8,6 +8,7 @@ class CardCoffeeWidget extends StatelessWidget {
   final String nome;
   final String descricao;
   final double preco;
+  final int id;
   final String imagem;
   final int tempoPreparacao;
   final List<Ingredients> ingredientes;
@@ -22,6 +23,7 @@ class CardCoffeeWidget extends StatelessWidget {
     required this.tempoPreparacao,
     required this.ingredientes,
     required this.informacoesNutricionais,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -118,6 +120,7 @@ class CardCoffeeWidget extends StatelessWidget {
                             nome: nome,
                             descricao: descricao,
                             preco: preco,
+                            id: id,
                             imagem: imagem,
                             tempoPreparacao: tempoPreparacao,
                             informacoesNutricionais: informacoesNutricionais,

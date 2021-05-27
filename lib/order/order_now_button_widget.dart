@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'order_now_controller.dart';
-import 'widgets/item_add_widget.dart';
 
 class OrderNowButtonWidget extends StatefulWidget {
   final double preco;
+  final String nome;
+  final int id;
   const OrderNowButtonWidget({
     Key? key,
     required this.preco,
+    required this.nome,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -19,7 +22,8 @@ class OrderNowButtonWidget extends StatefulWidget {
 class _OrderNowButtonWidgetState extends State<OrderNowButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    final controller = OrderNowController(preco: widget.preco);
+    final controller = OrderNowController(
+        preco: widget.preco, id: widget.id, nome: widget.nome);
     return Container(
         width: MediaQuery.of(context).size.width * 1,
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
@@ -58,7 +62,7 @@ class _OrderNowButtonWidgetState extends State<OrderNowButtonWidget> {
         return StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
           return Container(
-            height: MediaQuery.of(context).size.height * 0.73,
+            height: MediaQuery.of(context).size.height * 0.4,
             child: Column(
               children: [
                 Container(
@@ -208,7 +212,7 @@ class _OrderNowButtonWidgetState extends State<OrderNowButtonWidget> {
                               child: DropdownButtonHideUnderline(
                                 child: Observer(
                                   builder: (_) => DropdownButton<int>(
-                                      value: controller.valor,
+                                      value: controller.tamanho,
                                       items: [
                                         DropdownMenuItem(
                                           child: Text("P"),
@@ -232,33 +236,6 @@ class _OrderNowButtonWidgetState extends State<OrderNowButtonWidget> {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(
-                            width: 1.0, color: Colors.grey.shade300)),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
-                    child: Column(
-                      children: [
-                        ItemAddWidget(
-                          text: "Sugar",
-                          icon: Icons.food_bank_outlined,
-                        ),
-                        ItemAddWidget(
-                          text: "Ice",
-                          icon: Icons.food_bank_rounded,
-                        ),
-                        ItemAddWidget(
-                          text: "Cream",
-                          icon: Icons.chat_bubble_sharp,
-                        )
-                      ],
                     ),
                   ),
                 ),
@@ -295,7 +272,11 @@ class _OrderNowButtonWidgetState extends State<OrderNowButtonWidget> {
                                 color: Color(0xFF473D3A),
                                 borderRadius: BorderRadius.circular(30)),
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                await controller.finalizarCadastro();
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              },
                               child: Text(
                                 "Compre agora",
                                 style: TextStyle(

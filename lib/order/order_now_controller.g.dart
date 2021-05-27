@@ -32,18 +32,18 @@ mixin _$OrderNowController on OrderNowControllerBase, Store {
     });
   }
 
-  final _$valorAtom = Atom(name: 'OrderNowControllerBase.valor');
+  final _$tamanhoAtom = Atom(name: 'OrderNowControllerBase.tamanho');
 
   @override
-  int get valor {
-    _$valorAtom.reportRead();
-    return super.valor;
+  int get tamanho {
+    _$tamanhoAtom.reportRead();
+    return super.tamanho;
   }
 
   @override
-  set valor(int value) {
-    _$valorAtom.reportWrite(value, super.valor, () {
-      super.valor = value;
+  set tamanho(int value) {
+    _$tamanhoAtom.reportWrite(value, super.tamanho, () {
+      super.tamanho = value;
     });
   }
 
@@ -140,7 +140,7 @@ mixin _$OrderNowController on OrderNowControllerBase, Store {
   String toString() {
     return '''
 quantidade: ${quantidade},
-valor: ${valor},
+tamanho: ${tamanho},
 preco: ${preco},
 controleTemperatura: ${controleTemperatura},
 precoTotal: ${precoTotal}
